@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+
+Name=Rocket Launcher 2.0
+Comment=Universal Doom Frontend
+Categories=Game
+
+Icon=io.github.Hypnotoad90.RocketLauncher2
+Exec=RocketLauncher2
+Terminal=false

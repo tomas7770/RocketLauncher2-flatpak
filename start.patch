@@ -1,0 +1,24 @@
+diff --git a/rocketlauncher2.cpp b/rocketlauncher2.cpp
+index d899390..9fa8b82 100644
+--- a/rocketlauncher2.cpp
++++ b/rocketlauncher2.cpp
+@@ -447,13 +447,18 @@ void RocketLauncher2::on_pushButton_3_clicked() //RUN
+         QMessageBox::information(this,"Command Line" ,showargs);
+     }
+ 
++    QStringList finalCmd;
++    finalCmd << "--host";
++    finalCmd << enginefile;
++    finalCmd << cmd;
++
+     QFileInfo engineDir(enginefile);
+     QDir::setCurrent(engineDir.absolutePath());
+     process = new QProcess();
+ 
+     try
+     {
+-        process->start(enginefile,cmd);
++        process->startDetached("flatpak-spawn",finalCmd);
+     }
+     catch(QException &e)
+     {

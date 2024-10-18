@@ -1,0 +1,32 @@
+app-id: io.github.Hypnotoad90.RocketLauncher2
+runtime: org.kde.Platform
+runtime-version: '5.15-23.08'
+sdk: org.kde.Sdk
+
+command: RocketLauncher2
+finish-args:
+  - --device=dri
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=ipc
+  - --talk-name=org.freedesktop.Flatpak
+
+modules:
+  - name: RocketLauncher2
+    buildsystem: qmake
+    sources:
+      - type: git
+        url: https://github.com/Hypnotoad90/RocketLauncher2.git
+      - type: patch
+        path: start.patch
+      - type: file
+        path: io.github.Hypnotoad90.RocketLauncher2.metainfo.xml
+      - type: file
+        path: io.github.Hypnotoad90.RocketLauncher2.desktop
+      - type: file
+        path: io.github.Hypnotoad90.RocketLauncher2.png
+    post-install:
+      - install -D RocketLauncher2 /app/bin/RocketLauncher2
+      - install -D io.github.Hypnotoad90.RocketLauncher2.metainfo.xml -t /app/share/metainfo
+      - install -D io.github.Hypnotoad90.RocketLauncher2.desktop -t /app/share/applications
+      - install -D io.github.Hypnotoad90.RocketLauncher2.png -t /app/share/icons/hicolor/16x16/apps/
